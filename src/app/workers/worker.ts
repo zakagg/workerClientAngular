@@ -1,5 +1,6 @@
 export interface IWorker{
     "workerId": number,
+    "job":string;
     "workerName": string;
     "workerSurName": string;
     "workerCode": string;

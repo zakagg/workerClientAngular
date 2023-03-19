@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, OnChanges, SimpleChanges } from "@angular/core";
+import { WorkerService } from "./woker.service";
 import { IWorker } from "./worker";
 
 @Component({
@@ -7,31 +8,44 @@ import { IWorker } from "./worker";
     styleUrls:['./worker-list.component.css']
 
 })
-export class WorkerListComponent{
+export class WorkerListComponent implements OnChanges{
+    constructor(private workerService:WorkerService){
+        
+    }
+    ngOnChanges(changes: SimpleChanges): void {
+        console.log("onChange")
+    }
     pageTitle="Worker liste";
     imageWidth=30
     imageMargin=10;
-    workers:IWorker[]= [{
-        "workerId": 1,
-        "workerName": "Leaf Rake",
-        "workerSurName": "Leaf Rake",
-        "workerCode": "GDN-0011",
-        "releaseDate": "March 19, 2021",
-        "description": "Leaf rake with 48-inch wooden handle.",
-        "price": 19.95,
-        "starRating": 3.2,
-        "imageUrl": "assets/images/leaf_rake.png"
-      },
-      {
-        "workerId": 10,
-        "workerName": "Video Game Controller",
-        "workerSurName": "Video Game Controller",
-        "workerCode": "GMG-0042",
-        "releaseDate": "October 15, 2020",
-        "description": "Standard two-button video game controller",
-        "price": 35.95,
-        "starRating": 4.6,
-        "imageUrl": "assets/images/xbox-controller.png"
-      }
-    ]
+    showImage=true;
+    ratingClicked!:number;
+    private _listFilter:string="";
+    get listFilter():string{
+        return this._listFilter
+    }
+    set listFilter(value:string){
+        console.log(value)
+        this._listFilter=value;
+        this.onworkerFilter();
+    }
+
+    
+    workers:IWorker[]= this.workerService.getWorkers();
+    workerFilter:IWorker[]=this.workers;
+
+    toggleImage(){
+        this.showImage=!this.showImage
+    }
+    onworkerFilter():IWorker[]{
+        this.workerFilter.filter((worker:IWorker)=>
+        worker.job.toLowerCase().includes(this._listFilter))
+        return this.workerFilter;
+    }
+    OnratingClicked(message:string){
+        
+        this.pageTitle=message;
+    }
+
+
 }
