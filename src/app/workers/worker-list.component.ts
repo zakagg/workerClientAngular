@@ -1,5 +1,5 @@
-import { Component, OnChanges, SimpleChanges } from "@angular/core";
-import { WorkerService } from "./woker.service";
+import { Component, OnChanges, OnInit, SimpleChanges } from "@angular/core";
+import { WorkerService } from "./worker.service";
 import { IWorker } from "./worker";
 
 @Component({
@@ -8,18 +8,17 @@ import { IWorker } from "./worker";
     styleUrls:['./worker-list.component.css']
 
 })
-export class WorkerListComponent implements OnChanges{
+export class WorkerListComponent implements OnChanges ,OnInit{
     constructor(private workerService:WorkerService){
         
     }
-    ngOnChanges(changes: SimpleChanges): void {
-        console.log("onChange")
-    }
+    
     pageTitle="Worker liste";
     imageWidth=30
     imageMargin=10;
     showImage=true;
     ratingClicked!:number;
+    subscrption=this.workerService.getWorkers();
     private _listFilter:string="";
     get listFilter():string{
         return this._listFilter
@@ -31,7 +30,7 @@ export class WorkerListComponent implements OnChanges{
     }
 
     
-    workers:IWorker[]= this.workerService.getWorkers();
+    workers:IWorker[]= []
     workerFilter:IWorker[]=this.workers;
 
     toggleImage(){
@@ -46,6 +45,12 @@ export class WorkerListComponent implements OnChanges{
         
         this.pageTitle=message;
     }
-
-
+    ngOnChanges(changes: SimpleChanges): void {
+        console.log("onChange")
+    }
+    ngOnInit(): void {
+        this.workerService.getWorkers().subscribe({
+            next: workers=> this.workers=workers
+        });
+    }
 }

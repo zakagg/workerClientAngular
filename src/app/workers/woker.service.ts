@@ -1,9 +1,15 @@
+import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
+import { Observable,catchError,tap } from "rxjs";
 import { IWorker } from "./worker";
 
 @Injectable({providedIn:"root"})
+
 export class WorkerService{
-    private workers:IWorker[]=[{
+    private url="api/workers/workers.json"
+    constructor(private http:HttpClient ){}
+    //private workers:Observable<IWorker[]>=this.http.get<IWorker[]>(this.url);
+    /*[{
         "workerId": 1,
         "job":"sdqsdsqdsqd",
         "workerName": "Leaf Rake",
@@ -28,8 +34,9 @@ export class WorkerService{
         "imageUrl": "assets/images/xbox-controller.png"
       }
     ]
+    */
 
-    getWorkers(){
-        return this.workers;
+    getWorkers():Observable<IWorker[]>{
+        return this.http.get<IWorker[]>(this.url);
     }
 }
