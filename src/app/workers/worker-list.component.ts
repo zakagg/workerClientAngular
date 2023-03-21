@@ -13,12 +13,11 @@ export class WorkerListComponent implements OnChanges ,OnInit{
         
     }
     
+    errorMessage:string=""
     pageTitle="Worker liste";
     imageWidth=30
     imageMargin=10;
     showImage=true;
-    ratingClicked!:number;
-    subscrption=this.workerService.getWorkers();
     private _listFilter:string="";
     get listFilter():string{
         return this._listFilter
@@ -50,7 +49,11 @@ export class WorkerListComponent implements OnChanges ,OnInit{
     }
     ngOnInit(): void {
         this.workerService.getWorkers().subscribe({
-            next: workers=> this.workers=workers
+            next: workers=> {
+                this.workers=workers
+                this.workerFilter=workers
+            },
+            error:err=>this.errorMessage=err
         });
     }
 }
