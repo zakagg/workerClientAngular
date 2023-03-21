@@ -5,10 +5,10 @@ import{HttpClientModule} from '@angular/common/http'
 import { AppComponent } from './app.component';
 import { StarComponent } from './shared/star.component';
 import { WorkerListComponent } from './workers/worker-list.component';
-
+import { WorkListComponent } from './works/work-list.component';
 @NgModule({
   declarations: [
-    AppComponent,WorkerListComponent,StarComponent
+    AppComponent,WorkerListComponent,StarComponent,WorkListComponent
   ],
   imports: [
     BrowserModule,

@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: ` <div>
     <h1>{{title}}</h1>
-    <worker-list></worker-list>
+    <work-list></work-list>
               `,
   styleUrls: ['./app.component.css']
 })
