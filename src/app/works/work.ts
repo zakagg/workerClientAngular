@@ -1,4 +1,4 @@
-export interface Work{
+export interface IWork{
     "id":number;
     "name":string;
     "description":string

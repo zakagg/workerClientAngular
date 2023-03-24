@@ -1,15 +1,16 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, tap, throwError } from "rxjs";
+import { IWork } from "./work";
 
 @Injectable({providedIn:"root"})
-export class classWorkService{
+export class WorkService{
     constructor(private http:HttpClient){}
     private url="api/workers/works.json"
 
 
-    getWoreker(): Observable <Worker[]>{
-        return this.http.get<Worker[]>(this.url).pipe(
+    getWoreker(): Observable <IWork[]>{
+        return this.http.get<IWork[]>(this.url).pipe(
             tap(data=>data),
             catchError(this.handleError)
         )
