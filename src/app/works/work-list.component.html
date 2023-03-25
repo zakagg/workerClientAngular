@@ -1,17 +1,4 @@
-<h5><u><i>Login Form using Angular material!!</i></u></h5>
-<form class="example-form">
-<mat-form-field class="example-full-width" appearance="fill">
-<mat-label>User Name</mat-label>
-<input matInput placeholder="Enter your name" name="usename"
-[(ngModel)] ="username">
-</mat-form-field>
-<mat-form-field class="example-full-width" appearance="fill">
-<mat-label>Password</mat-label>
-<input matInput placeholder="Enter your password" value="" name="password" type="password" [(ngModel)]= "password">
-</mat-form-field>
-<button mat-raised-button color="primary" (click)="submit()">Submit</button>
-<span *ngIf="show"> <button mat-button color="accent">Login success !!</button></span>
-</form>
+
 
 <div class="card">
     <div class="card-header">
@@ -31,7 +18,7 @@
         </div>
         <div class="row">
             <div class="table-responsive">
-                <table class="table" >
+                <table class="table" *ngIf="listeFilterWork.length">
                     <thead >                    
                         <tr >
                             <th class=" col-md-2">
