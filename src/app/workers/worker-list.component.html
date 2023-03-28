@@ -30,8 +30,12 @@
                 <tbody>
                     <tr *ngFor="let worker of workers">
                         <td ><img *ngIf="showImage" [src]="worker.imageUrl" [title]="worker.workerName " [style.width.px]="imageWidth" [style.margin.px]="imageMargin"/></td>
-                        <td>{{worker.workerName}} {{worker.workerSurName}}</td>
-                        <td>{{worker.workerCode}}</td>
+                        <td>
+                            <a [routerLink]='["/workers",worker.workerId]'>
+                                {{worker.workerName}} 
+                            </a>
+                        </td>
+                        <td><a>{{worker.workerCode}}</a>></td>
                         <td>{{worker.releaseDate}}</td>
                         <td>{{worker.price}}</td>
                         <td ><star (ratingClicked)="OnratingClicked($event)" [rating]="worker.starRating"></star></td>

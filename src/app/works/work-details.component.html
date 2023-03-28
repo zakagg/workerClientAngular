@@ -1,0 +1,43 @@
+<div class='card' *ngIf='work'>
+    <div class='card-header'>
+      {{pageTitle + ': ' + work.id}}
+    </div>
+  
+    <div class='card-body'
+         >
+      <div class='row'>
+        <div class='col-md-8'>
+          <div class='row'>
+            <div class='col-md-4'>Name:</div>
+            <div class='col-md-8'>{{work.name}}</div>
+          </div>
+         
+          <div class='row'>
+            <div class='col-md-4'>Description:</div>
+            <div class='col-md-8'>{{work.description}}</div>
+          </div>
+          <div class='row'>
+            <div class='col-md-4'>Availability:</div>
+            <div class='col-md-8'>{{work.name}}</div>
+          </div>
+        
+          
+        </div>
+  
+        <div class='col-md-4'>
+          <img class='center-block img-responsive'
+               [style.width.px]='200'
+               [style.margin.px]='2'
+               [src]='work.imageUrl'
+               [title]='work.name'>
+        </div>
+      </div>
+    </div>
+  
+    <div class='card-footer'>
+      <button class='btn btn-outline-secondary'
+              style='width:80px'
+              (click)='onBack()'>
+        <i class='fa fa-chevron-left'></i> Back
+      </button>
+    </div>
